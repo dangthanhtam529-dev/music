@@ -1,0 +1,37 @@
+.galleryPage { display: grid; gap: 20px; }
+.header { display: flex; justify-content: space-between; align-items: start; }
+.grid {
+  columns: 5 180px;
+  column-gap: 16px;
+}
+.tile {
+  width: 100%;
+  height: var(--tile-height);
+  margin: 0 0 16px;
+  border: 0;
+  border-radius: 20px;
+  background: linear-gradient(160deg, var(--tile-color), rgba(20, 14, 12, 0.72));
+  color: #fff8ef;
+  display: grid;
+  place-items: end start;
+  padding: 16px;
+  break-inside: avoid;
+}
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 8, 8, 0.84);
+  display: grid;
+  grid-template-columns: 72px minmax(320px, 1fr) 72px;
+  place-items: center;
+  z-index: 50;
+}
+.lightboxImage {
+  width: min(58vw, 760px);
+  height: min(74vh, 780px);
+  border-radius: 28px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(160deg, var(--tile-color), rgba(20, 14, 12, 0.82));
+}
+.lightbox button { background: transparent; border: 0; color: white; font-size: 56px; }

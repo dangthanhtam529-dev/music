@@ -1,0 +1,159 @@
+.playerPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 16px;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.backButton {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  border: 1px solid rgba(255, 248, 239, 0.2);
+  border-radius: 999px;
+  padding: 8px 14px;
+  color: var(--cream);
+  background: rgba(20, 14, 12, 0.5);
+  backdrop-filter: blur(12px);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 180ms ease;
+  z-index: 10;
+}
+
+.backButton:hover {
+  background: rgba(20, 14, 12, 0.7);
+}
+
+.lyricsBook {
+  width: 92vw;
+  height: 72vh;
+  margin-top: 44px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.bookPage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.lyricsImage {
+  max-width: 100%;
+  max-height: 72vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.illustrationBox {
+  position: absolute;
+  top: 20.2%;
+  left: 16%;
+  width: 35%;
+  height: 57.5%;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.illustrationImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.placeholder {
+  color: rgba(255, 248, 239, 0.5);
+  font-size: 16px;
+  letter-spacing: 0.1em;
+}
+
+.bottomControls {
+  width: 92vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-top: -16px;
+}
+
+.progressShell {
+  width: 100%;
+}
+
+.progress {
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 999px;
+  outline: none;
+  background: linear-gradient(90deg, var(--track-accent, #d9a86c) 0 var(--progress, 0%), rgba(255, 248, 239, 0.15) var(--progress, 0%) 100%);
+}
+
+.progress::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff7e7;
+  border: 3px solid var(--track-accent, #d9a86c);
+  cursor: pointer;
+}
+
+.progress::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff7e7;
+  border: 3px solid var(--track-accent, #d9a86c);
+  cursor: pointer;
+}
+
+.timeRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  color: rgba(255, 248, 239, 0.6);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.playButton {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 0;
+  display: grid;
+  place-items: center;
+  color: #21120f;
+  background: linear-gradient(145deg, #fff0c4, var(--track-accent, #d9a86c));
+  cursor: pointer;
+  transition: transform 180ms ease;
+}
+
+.playButton:hover {
+  transform: scale(1.06);
+}
+
+.playButton svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linejoin: round;
+}

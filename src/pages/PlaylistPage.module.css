@@ -1,0 +1,19 @@
+.playlistPage { display: grid; gap: 24px; }
+.header { display: flex; justify-content: space-between; align-items: end; gap: 24px; }
+.header h1 { margin: 0; font-size: 42px; }
+.list { display: grid; gap: 14px; }
+.track {
+  display: grid;
+  grid-template-columns: 70px 1fr auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 244, 220, 0.14);
+  background: rgba(24, 17, 15, 0.72);
+  color: var(--cream);
+  text-align: left;
+}
+.locked { opacity: 0.56; }
+.unlocked:hover { transform: translateX(8px); }
+.track i { font-style: normal; color: var(--muted); }

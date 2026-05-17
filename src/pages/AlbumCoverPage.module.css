@@ -1,0 +1,42 @@
+.coverPage {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.coverWrap {
+  display: grid;
+  gap: 22px;
+  justify-items: center;
+  color: rgba(255, 248, 239, 0.9);
+}
+.coverWrap p { text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5); }
+
+.cover {
+  width: min(560px, 72vh);
+  aspect-ratio: 1;
+  border: 0;
+  border-radius: 12px;
+  padding: 0;
+  overflow: hidden;
+  background: #080706;
+  box-shadow:
+    0 42px 110px rgba(0, 0, 0, 0.52),
+    0 0 0 1px rgba(255, 244, 220, 0.14);
+  transition: transform 260ms ease, box-shadow 260ms ease, filter 260ms ease;
+}
+
+.cover:hover {
+  transform: translateY(-10px) scale(1.015);
+  filter: brightness(1.04);
+  box-shadow:
+    0 54px 130px rgba(0, 0, 0, 0.62),
+    0 0 0 1px rgba(255, 244, 220, 0.24);
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}

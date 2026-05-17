@@ -1,0 +1,45 @@
+.spreadPage {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 18px;
+}
+
+.albumFrame {
+  width: min(1380px, 92vw);
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #080706;
+  box-shadow:
+    0 38px 120px rgba(0, 0, 0, 0.56),
+    0 0 0 1px rgba(255, 244, 220, 0.14);
+}
+
+.spreadImage {
+  width: 100%;
+  display: block;
+}
+
+.cdHotspot {
+  position: absolute;
+  right: 5.7%;
+  top: 16%;
+  width: 27%;
+  aspect-ratio: 1;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.cdHotspot:hover {
+  background: radial-gradient(circle, rgba(255, 244, 220, 0.2), transparent 64%);
+  box-shadow: 0 0 42px rgba(255, 244, 220, 0.18);
+}
+
+.prompt {
+  margin: 0;
+  color: rgba(255, 248, 239, 0.95);
+  letter-spacing: 0.08em;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+}

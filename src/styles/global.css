@@ -1,0 +1,89 @@
+:root {
+  color-scheme: dark;
+  --bg: #17110f;
+  --paper: #f4dfbd;
+  --paper-deep: #d8b57b;
+  --ink: #2d211b;
+  --cream: #fff8ef;
+  --muted: #8a6e52;
+  --accent: #d78b63;
+  --shadow: rgba(0, 0, 0, 0.32);
+  font-family: Inter, 'Microsoft YaHei', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-width: 1024px;
+  background:
+    url('/image/beijing.png') center/cover no-repeat fixed;
+  color: var(--cream);
+}
+button, input { font: inherit; }
+button { cursor: pointer; }
+
+.page {
+  min-height: 100vh;
+  padding: 56px;
+  position: relative;
+  overflow: hidden;
+}
+
+.route-transition { animation: pageIn 520ms ease both; }
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.primary-button, .ghost-button {
+  border: 0;
+  border-radius: 999px;
+  padding: 13px 24px;
+  background: var(--accent);
+  color: #211412;
+  box-shadow: 0 12px 30px var(--shadow);
+  transition: transform 180ms ease, filter 180ms ease;
+}
+.primary-button:hover, .ghost-button:hover { transform: translateY(-2px); filter: brightness(1.08); }
+.ghost-button {
+  background: rgba(20, 14, 12, 0.65);
+  border: 1px solid rgba(255, 244, 220, 0.35);
+  color: #fff8ef;
+  font-weight: 500;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 34px;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: rgba(20, 14, 12, 0.9);
+  border: 1px solid rgba(255, 244, 220, 0.2);
+  color: var(--cream);
+  z-index: 20;
+}
+
+.mobile-blocker { display: none; }
+@media (max-width: 900px) {
+  body { min-width: 0; }
+  .desktop-shell { display: none; }
+  .mobile-blocker {
+    min-height: 100vh;
+    padding: 36px;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    color: var(--cream);
+  }
+}
