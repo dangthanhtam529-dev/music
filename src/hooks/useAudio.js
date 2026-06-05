@@ -26,6 +26,14 @@ export function useAudio({ currentTrackIndex, mode, volume, unlockedTracks, allT
     setCurrentTime(0);
     setDuration(0);
     setIsPlaying(false);
+    // 自动播放
+    if (track.audioSrc) {
+      audio.play().then(() => {
+        setIsPlaying(true);
+      }).catch(() => {
+        setIsPlaying(false);
+      });
+    }
   }, [currentTrackIndex]);
 
   useEffect(() => {
@@ -35,22 +43,22 @@ export function useAudio({ currentTrackIndex, mode, volume, unlockedTracks, allT
 
   const goToTrack = useCallback(
     (index) => {
-      if (index < 0 || index >= tracks.length || !unlockedTracks[index]) return false;
+      if (index < 0 || index >= tracks.length) return false;
       setCurrentTrackIndex(index);
       return true;
     },
-    [setCurrentTrackIndex, unlockedTracks],
+    [setCurrentTrackIndex],
   );
 
   const nextTrack = useCallback(() => {
-    if (mode === 'random' && allTracksUnlocked) {
+    if (mode === 'random') {
       const choices = tracks.map((_, index) => index).filter((index) => index !== currentTrackIndex);
       const next = choices[Math.floor(Math.random() * choices.length)] ?? currentTrackIndex;
       setCurrentTrackIndex(next);
       return true;
     }
     return goToTrack(currentTrackIndex + 1);
-  }, [allTracksUnlocked, currentTrackIndex, goToTrack, mode, setCurrentTrackIndex]);
+  }, [currentTrackIndex, goToTrack, mode, setCurrentTrackIndex]);
 
   const previousTrack = useCallback(() => goToTrack(currentTrackIndex - 1), [currentTrackIndex, goToTrack]);
 

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppState } from '../context/AppContext.jsx';
 import { usePlayer } from '../context/PlayerContext.jsx';
@@ -28,6 +28,24 @@ function PauseIcon() {
   );
 }
 
+function PreviousIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M6 6h2v12H6z" />
+      <path d="M20 6 9 12l11 6Z" />
+    </svg>
+  );
+}
+
+function NextIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M16 6h2v12h-2z" />
+      <path d="M4 6l11 6L4 18Z" />
+    </svg>
+  );
+}
+
 export default function MusicPlayerPage() {
   const navigate = useNavigate();
   const { trackId } = useParams();
@@ -42,6 +60,8 @@ export default function MusicPlayerPage() {
     duration,
     togglePlay,
     seek,
+    nextTrack,
+    previousTrack,
   } = usePlayer();
 
   useEffect(() => {
@@ -50,12 +70,18 @@ export default function MusicPlayerPage() {
       navigate('/playlist', { replace: true });
       return;
     }
-    if (!unlockedTracks[nextIndex]) {
-      navigate('/playlist', { replace: true });
-      return;
-    }
     openTrack(nextIndex);
-  }, [trackId, navigate, tracks.length, unlockedTracks, openTrack]);
+  }, [trackId, navigate, tracks.length, openTrack]);
+
+  const handleNext = () => {
+    const nextIndex = (currentTrackIndex + 1) % tracks.length;
+    navigate(`/player/${nextIndex + 1}`);
+  };
+
+  const handlePrevious = () => {
+    const prevIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+    navigate(`/player/${prevIndex + 1}`);
+  };
 
   const progress = duration ? currentTime / duration : 0;
   const displayDuration = duration || 180;
@@ -109,13 +135,31 @@ export default function MusicPlayerPage() {
           </div>
         </div>
 
-        <button
-          className={styles.playButton}
-          onClick={togglePlay}
-          aria-label={isPlaying ? '暂停' : '播放'}
-        >
-          {isPlaying ? <PauseIcon /> : <PlayIcon />}
-        </button>
+        <div className={styles.transportRow}>
+          <button
+            className={styles.secondaryButton}
+            onClick={handlePrevious}
+            aria-label="上一首"
+          >
+            <PreviousIcon />
+          </button>
+
+          <button
+            className={styles.playButton}
+            onClick={togglePlay}
+            aria-label={isPlaying ? '暂停' : '播放'}
+          >
+            {isPlaying ? <PauseIcon /> : <PlayIcon />}
+          </button>
+
+          <button
+            className={styles.secondaryButton}
+            onClick={handleNext}
+            aria-label="下一首"
+          >
+            <NextIcon />
+          </button>
+        </div>
       </div>
 
       {notice && <div className="toast">{notice}</div>}

@@ -6,6 +6,17 @@ const boxKey = 'music-album:box-opened';
 const welcomeKey = 'music-album:welcome-visited';
 const unlockedKey = 'music-album:unlocked-tracks';
 const progressKey = 'music-album:track-progress';
+const storageVersion = 'v2-all-unlocked';
+const versionKey = 'music-album:storage-version';
+
+function migrateStorage() {
+  // 版本不匹配时清掉旧的解锁/进度状态，强制用新的默认（全解锁）
+  if (localStorage.getItem(versionKey) !== storageVersion) {
+    localStorage.removeItem(unlockedKey);
+    localStorage.removeItem(progressKey);
+    localStorage.setItem(versionKey, storageVersion);
+  }
+}
 
 function readJson(key, fallback) {
   try {
@@ -23,10 +34,11 @@ function writeJson(key, value) {
 function initialUnlocked() {
   const stored = readJson(unlockedKey, null);
   if (Array.isArray(stored) && stored.length === tracks.length) return stored;
-  return tracks.map((_, index) => index === 0);
+  return tracks.map(() => true);
 }
 
 export function AppProvider({ children }) {
+  migrateStorage();
   const [hasOpenedBox, setHasOpenedBoxState] = useState(() => localStorage.getItem(boxKey) === 'true');
   const [hasVisitedWelcome, setHasVisitedWelcomeState] = useState(() => localStorage.getItem(welcomeKey) === 'true');
   const [unlockedTracks, setUnlockedTracks] = useState(initialUnlocked);

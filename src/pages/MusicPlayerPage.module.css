@@ -132,6 +132,39 @@
   letter-spacing: 0.06em;
 }
 
+.transportRow {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.secondaryButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 0;
+  display: grid;
+  place-items: center;
+  color: var(--cream, #fff8ef);
+  background: transparent;
+  cursor: pointer;
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.secondaryButton:hover {
+  background: rgba(255, 248, 239, 0.08);
+  transform: scale(1.05);
+}
+
+.secondaryButton svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linejoin: round;
+}
+
 .playButton {
   width: 52px;
   height: 52px;

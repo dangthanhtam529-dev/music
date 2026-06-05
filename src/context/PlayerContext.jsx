@@ -22,10 +22,6 @@ export function PlayerProvider({ children }) {
   });
 
   const openTrack = (index) => {
-    if (!unlockedTracks[index]) {
-      showNotice('请先听完上一首音乐来解锁当前曲目');
-      return false;
-    }
     setCurrentTrackIndex(index);
     return true;
   };
@@ -39,11 +35,11 @@ export function PlayerProvider({ children }) {
   };
 
   const guardedNextTrack = () => {
-    if (!audio.nextTrack()) showNotice('请先听完上一首音乐来解锁当前曲目');
+    audio.nextTrack();
   };
 
   const guardedPreviousTrack = () => {
-    if (!audio.previousTrack()) showNotice('已经是第一首或曲目未解锁');
+    audio.previousTrack();
   };
 
   const value = useMemo(
